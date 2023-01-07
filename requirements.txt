@@ -1,0 +1,4 @@
+fake-useragent
+requests
+rich
+sh
