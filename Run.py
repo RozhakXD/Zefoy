@@ -18,6 +18,6 @@ if __name__ == '__main__':
         else:
             print(f"Perangkat {platform.machine()} bit, tidak dapat menjalankan aarch64 atau x86_64!")
             exit()
-    except (Exception, KeyboardInterrupt):
+    except (Exception, KeyboardInterrupt) as e:
         print(f"[Error] {str(e).capitalize()}!")
         exit()
