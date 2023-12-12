@@ -38,16 +38,16 @@ $ cd "$HOME/Zefoy" && git pul
 $ python Run.py
 ```
 
+### Tiktok video link requirements?
+- Your TikTok account must not be locked or private and videos must be public.
+- The link must be correct and taken in the TikTok application or website.
+- Example of a correct link: **https://vt.tiktok.com/ZSNVTS1eE/** or **https://www.tiktok.com/@rozhak_official/video/7311522299532840198**.
+
 ### Error sending followers?
 - Maybe there is a problem with the Zefoy server or it is being updated.
 - You entered the wrong TikTok video link.
 - You can try the Zefoy website manually.
 - You can use airplane mode if the error occurs repeatedly and check whether the zefoy website is working.
-
-### Tiktok video link requirements?
-- Your TikTok account must not be locked or private and videos must be public.
-- The link must be correct and taken in the TikTok application or website.
-- Example of a correct link: **https://vt.tiktok.com/ZSNVTS1eE/** or **https://www.tiktok.com/@rozhak_official/video/7311522299532840198**.
 
 ### Login failed?
 - Tools is trying to bypass the captcha in Zefoy.
