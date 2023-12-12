@@ -1,5 +1,6 @@
 requests
+pytesseract
+cython
 rich
 requests-toolbelt
-pytesseract
 pillow
