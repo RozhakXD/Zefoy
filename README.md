@@ -50,8 +50,8 @@ $ python Run.py
 - Example of a correct link: **https://vt.tiktok.com/ZSNVTS1eE/** or **https://www.tiktok.com/@rozhak_official/video/7311522299532840198**.
 
 ### Login failed?
-- Maybe the tool failed to bypass Cloudflare or Zefoy is undergoing maintenance.
 - Tools is trying to bypass the captcha in Zefoy.
+- Maybe the tool failed to bypass Cloudflare or Zefoy is undergoing maintenance.
 - Zefoy's security is so tight that tools can't get past it!
 
 ### How many views did you get?
