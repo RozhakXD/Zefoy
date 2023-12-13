@@ -10,13 +10,8 @@ if __name__ == '__main__':
             Subprocess_Call(command)
             command = ["./aarch64"]
             Subprocess_Call(command)
-        elif platform.machine() == "x86_64":
-            command = ["chmod", "+x", "x86_64"]
-            Subprocess_Call(command)
-            command = ["./x86_64"]
-            Subprocess_Call(command)
         else:
-            print(f"Perangkat {platform.machine()} bit, tidak dapat menjalankan aarch64 atau x86_64!")
+            print(f"Perangkat {platform.machine()} bit, tidak dapat menjalankan aarch64!")
             exit()
     except (Exception, KeyboardInterrupt) as e:
         print(f"[Error] {str(e).capitalize()}!")
