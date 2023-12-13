@@ -13,6 +13,13 @@ if __name__ == '__main__':
         else:
             print(f"Perangkat {platform.machine()} bit, tidak dapat menjalankan aarch64!")
             exit()
-    except (Exception, KeyboardInterrupt) as e:
+    except (KeyboardInterrupt):
+        if platform.machine() == "aarch64":
+            command = ["./aarch64"]
+            Subprocess_Call(command)
+        else:
+            print(f"Perangkat {platform.machine()} bit, tidak dapat menjalankan aarch64!")
+            exit()
+    except (Exception) as e:
         print(f"[Error] {str(e).capitalize()}!")
         exit()
