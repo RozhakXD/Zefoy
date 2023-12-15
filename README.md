@@ -60,6 +60,11 @@ $ python Run.py
 - You can also get more than 1000 TikTok views.
 - You can get 1000 TikTok video views in 4-10 minutes.
 
+### Why have TikTok views dropped drastically?
+- Maybe TikTok detected suspicious activity from your account so the developer deleted views from your video.
+- Bugs from Zefoy directly because this is an unofficial website.
+- Maybe TikTok's security is high so they can detect the bots you use.
+
 ### When will the views arrive?
 TikTok views will arrive on your video in less than 1 minute after successfully sending, but these may not come in or come in for more than 1 minute if the Zefoy website has problems!
 
