@@ -44,7 +44,7 @@ $ python Run.py
 - The link must be correct and taken in the TikTok application or website.
 - Example of a correct link: **https://vt.tiktok.com/ZSNVTS1eE/** or **https://www.tiktok.com/@rozhak_official/video/7311522299532840198**.
 
-### Error sending followers?
+### Error sending views?
 - Maybe there is a problem with the Zefoy server or it is being updated.
 - You entered the wrong TikTok video link.
 - You can try the Zefoy website manually.
