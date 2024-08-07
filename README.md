@@ -1,75 +1,71 @@
-# FREE TIKTOK VIEWS - WITH TERMUX
-<div align="center">
-  <img src="Data/Zefoy.png">
-  <br>
-  <br>
-  <p>
-    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/rozhakxd/Zefoy">
-    <img alt="GitHub issues" src="https://img.shields.io/github/issues/rozhakxd/Zefoy">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=shields">
-    <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/rozhakxd/Zefoy">
-    <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/rozhakxd/Zefoy">
-    <img alt="Maintenance" src="https://img.shields.io/maintenance/no/2023">
-  </p>
-  <h4> Get Views On Tiktok Using Termux Only ! </h4>
-</div>
+# FREE TIKTOK VIEWS - WITH ZEFOY
 
-##
+![Zefoy](https://github.com/user-attachments/assets/a566e553-094d-4567-bfcd-e0887a25ec51)
 
-### What is Zefoy?
-[**Zefoy**](https://github.com/RozhakXD/Zefoy) is a tool used to get views on Tiktok using the Termux application. This tool gets help from [zefoy.com](https://zefoy.com) to get views.
+[Zefoy](https://github.com/RozhakXD/Zefoy) is a powerful tool designed to boost your TikTok views effortlessly using the Termux application. Leveraging the capabilities of [zefoy.com](https://zefoy.com), Zefoy allows you to increase your TikTok view count rapidly and efficiently.
 
-You can get 1,000-2,000 TikTok views in 5 minutes!
+With Zefoy, you can achieve between 1,000 to 2,000 TikTok views in just 5 minutes, making it an invaluable asset for anyone looking to enhance their presence on TikTok quickly and effectively!
 
-### Termux command?
-First you must have the [Termux](https://f-droid.org/repo/com.termux_118.apk) application to run this script and for how to use it can be seen on [**Youtube**](https://youtu.be/bmbT5ECbwNU). Then you enter some basic commands below!
+## Features
+Zefoy offers a range of features designed to enhance your TikTok experience, including free TikTok views that can be obtained quickly and efficiently. Additionally, Zefoy utilizes advanced captcha bypass technology, ensuring a smooth and uninterrupted experience by automatically processing and extracting captcha text using OCR (Optical Character Recognition) techniques with the pytesseract library.
+
+## Installation
+First, ensure you have the Termux application installed. Follow the commands below to install and run Zefoy:
 ```
-$ apt update -y && apt upgrade -y
-$ pkg install git python-pip
-$ pkg install tesseract
-$ git clone https://github.com/RozhakXD/Zefoy
+$ pkg update -y && pkg upgrade -y
+$ pkg install git python-pip tesseract
+$ git clone https://github.com/RozhakXD/Zefoy.git
 $ cd "Zefoy"
-$ python -m pip install pytesseract
-$ python -m pip install -r requirements.txt
+$ pip install -r requirements.txt
 $ python Run.py
 ```
 
 ```
-$ cd "$HOME/Zefoy" && git pul
+$ cd "$HOME/Zefoy" && git pull
 $ python Run.py
 ```
 
-### Tiktok video link requirements?
-- Your TikTok account must not be locked or private and videos must be public.
-- The link must be correct and taken in the TikTok application or website.
-- Example of a correct link: **https://vt.tiktok.com/ZSNVTS1eE/** or **https://www.tiktok.com/@rozhak_official/video/7311522299532840198**.
+## Screenshot
+![FunPic_20240807](https://github.com/user-attachments/assets/ebb453f3-c2df-4014-acff-df9c33da5d05)
 
-### Error sending views?
-- Maybe there is a problem with the Zefoy server or it is being updated.
-- You entered the wrong TikTok video link.
-- You can try the Zefoy website manually.
-- You can use airplane mode if the error occurs repeatedly and check whether the zefoy website is working.
+## Support
+If you find Zefoy helpful and want to support further development, consider contributing through the following links:
 
-### Login failed?
-- Tools is trying to bypass the captcha in Zefoy.
-- Maybe the tool failed to bypass Cloudflare or Zefoy is undergoing maintenance.
-- Zefoy's security is so tight that tools can't get past it!
+- Trakteer: [Support via Trakteer](https://trakteer.id/rozhak_official/tip)
+- PayPal: [Donate via PayPal](https://paypal.me/rozhak9)
 
-### How many views did you get?
-- TikTok views can drop to less than 1000 if the server is busy.
-- You can also get more than 1000 TikTok views.
-- You can get 1000 TikTok video views in 4-10 minutes.
+## Troubleshooting
+In this section, you'll find solutions to common issues you might encounter while using Zefoy. From verifying video link requirements to resolving errors in sending views, we've got you covered with clear and practical guidance.
 
-### Why have TikTok views dropped drastically?
-- Maybe TikTok detected suspicious activity from your account so the developer deleted views from your video.
-- Bugs from Zefoy directly because this is an unofficial website.
-- Maybe TikTok's security is high so they can detect the bots you use.
+### A. TikTok Video Link Requirements
+- **Public Account**: Ensure your TikTok account is not locked or private. Videos must be set to public.
+- **Example Links**: Here are some examples of correct video links:
+    - `https://vt.tiktok.com/ZSNVTS1eE/`
+    - `https://www.tiktok.com/@rozhak_official/video/7311522299532840198`
+- **Correct Link**: Copy the video link directly from the TikTok app or website to avoid errors.
 
-### When will the views arrive?
-TikTok views will arrive on your video in less than 1 minute after successfully sending, but these may not come in or come in for more than 1 minute if the Zefoy website has problems!
+### B. Error Sending Views
+- **Airplane Mode**: If the error persists, switch to airplane mode and check if the Zefoy website is functional.
+- **Server Issues**: The Zefoy server might be down or undergoing maintenance.
+- **Incorrect Link**: Double-check that you've entered the correct TikTok video link.
+- **Manual Access**: Try using the Zefoy website manually if you encounter errors.
 
-##
-```python
-print("Good luck hope it works!")
-```
-##
+### C. Login Failed
+- **Captcha Bypass**: The tool may be attempting to bypass the captcha on Zefoy.
+- **Cloudflare Protection**: There might be issues bypassing Cloudflare or Zefoy could be under maintenance.
+- **High Security**: Zefoy's security might be too robust for the tool to bypass.
+
+### D. Number of Views Received
+- **Busy Server**: If the server is busy, you might receive fewer than 1000 views.
+- **More Views**: It's possible to get more than 1000 views.
+- **Timeframe**: Typically, you can get 1000 views within 4-10 minutes.
+
+### E. Sudden Drop in TikTok Views
+- **Suspicious Activity**: TikTok may detect unusual activity and remove views from your video.
+- **Zefoy Bugs**: Since Zefoy is unofficial, there might be bugs causing this issue.
+- **High Security**: TikTok's security systems might be identifying and removing bot-generated views.
+
+Views are typically delivered to your video within 1 minute after they are sent. However, if there are issues with the Zefoy website, there might be delays or the views might not appear at all.
+
+## Warning
+While Zefoy is designed to increase TikTok views, its use comes with risks and responsibilities. Be aware that using such tools may violate TikTok’s terms of service, and excessive use might lead to account penalties or bans. Always use the tool responsibly and ensure that your actions comply with TikTok’s policies and legal guidelines.
