@@ -35,11 +35,11 @@ class DIPERLUKAN:
             )
             response = r.get('https://zefoy.com/').text
             if 'Sorry, you have been blocked' in str(response) or 'Just a moment...' in str(response):
-                printf(Panel(f"[italic red]Zefoy server is currently affected by cloudflare, you can try again until cloudflare\nis gone, please visit[italic green] zefoy.com[italic red] to check it!", width=56, style="bold bright_white", title="[ Cloudflare ]"))
+                printf(Panel(f"[bold red]Zefoy server is currently affected by cloudflare, you can try again until cloudflare\nis gone, please visit[bold green] zefoy.com[bold red] to check it!", width=56, style="bold bright_white", title="[bold bright_white][ Cloudflare ]"))
                 sys.exit()
             else:
-                self.captcha_image = re.search('src="(.*?)" onerror="imgOnError\\(\\)"', str(response)).group(1).replace('amp;', '')
-                self.form = re.search('type="text" name="(.*?)"', str(response)).group(1)
+                self.captcha_image = re.search(r'src="(.*?)" onerror="imgOnError\(\)"', str(response)).group(1).replace('amp;', '')
+                self.form = re.search(r'type="text" name="(.*?)"', str(response)).group(1)
                 r.headers.update(
                     {
                         'Cookie': "; ".join([str(x) + "=" + str(y) for x, y in r.cookies.get_dict().items()]),
@@ -103,8 +103,8 @@ class DIPERLUKAN:
             response = r.get('https://zefoy.com/').text
 
             if 'placeholder="Enter Video URL"' in str(response):
-                self.video_form = re.search('name="(.*?)" placeholder="Enter Video URL"', str(response)).group(1)
-                self.post_action = re.findall('action="(.*?)">', str(response))[3]
+                self.video_form = re.search(r'name="(.*?)" placeholder="Enter Video URL"', str(response)).group(1)
+                self.post_action = re.findall(r'action="(.*?)">', str(response))[3]
                 printf(f"[bold bright_white]   ───>[bold green] SUCCESSFULLY FOUND VIDEO FORM!   ", end='\r')
                 time.sleep(1.5)
                 self.MENGIRIMKAN_TAMPILAN(self.video_form, self.post_action, video_url)
@@ -154,9 +154,9 @@ class DIPERLUKAN:
                         'Content-Type': 'multipart/form-data; boundary={}'.format(boundary),
                     }
                 )
-                self.find_form_videoid = re.search('type="hidden" name="(.*?)" value="(\d+)"', str(self.base64_string))
+                self.find_form_videoid = re.search(r'type="hidden" name="(.*?)" value="(\d+)"', str(self.base64_string))
                 self.form_videoid, self.videoid = self.find_form_videoid.group(1), self.find_form_videoid.group(2)
-                self.next_post_action = re.search('action="(.*?)"', str(self.base64_string)).group(1)
+                self.next_post_action = re.search(r'action="(.*?)"', str(self.base64_string)).group(1)
                 data = MultipartEncoder(
                     {
                         self.form_videoid: (None, self.videoid)
@@ -170,16 +170,16 @@ class DIPERLUKAN:
                     SUKSES.append(f"{self.base64_string2}")
                     printf(Panel(f"""[bold white]Status :[bold green] Successfully...
 [bold white]Link :[bold red] {video_url}
-[bold white]Views :[bold yellow] +1000""", width=56, style="bold bright_white", title="[ Sukses ]"))
+[bold white]Views :[bold yellow] +1000""", width=56, style="bold bright_white", title="[bold bright_white][ Sukses ]"))
                     printf(f"[bold bright_white]   ───>[bold green] TRY SENDING VIEWS AGAIN!           ", end='\r')
                     time.sleep(2.5)
                     self.MENGIRIMKAN_TAMPILAN(video_form, post_action, video_url)
                 elif 'Successfully ' in str(self.base64_string2) and ' views sent.' in str(self.base64_string2):
-                    self.views_sent = re.search('Successfully (.*?) views sent.', str(self.base64_string2)).group(1)
+                    self.views_sent = re.search(r'Successfully (.*?) views sent.', str(self.base64_string2)).group(1)
                     SUKSES.append(f"{self.base64_string2}")
                     printf(Panel(f"""[bold white]Status :[bold yellow] Successfully...
 [bold white]Link :[bold red] {video_url}
-[bold white]Views :[bold green] +{self.views_sent}""", width=56, style="bold bright_white", title="[ Sukses ]"))
+[bold white]Views :[bold green] +{self.views_sent}""", width=56, style="bold bright_white", title="[bold bright_white][ Sukses ]"))
                     printf(f"[bold bright_white]   ───>[bold green] TRY SENDING VIEWS AGAIN!           ", end='\r')
                     time.sleep(2.5)
                     self.MENGIRIMKAN_TAMPILAN(video_form, post_action, video_url)
@@ -208,7 +208,7 @@ class DIPERLUKAN:
                 self.DELAY(0, 300)
                 return (False)
             elif 'Please try again later. Server too busy.' in str(self.base64_string):
-                printf(Panel(f"[italic red]Zefoy server is busy, you can try again in a few days, please check regularly on zefoy.com!", width=56, style="bold bright_white", title="[ Server Sibuk ]"))
+                printf(Panel(f"[bold red]Zefoy server is busy, you can try again in a few days, please check regularly on zefoy.com!", width=56, style="bold bright_white", title="[bold bright_white][ Server Sibuk ]"))
                 sys.exit()
             elif 'An error occurred. Please try again.' in str(self.base64_string):
                 printf(f"[bold bright_white]   ───>[bold red] AN ERROR OCCURRED, PLEASE TRY AGAIN IN A FEW MOMENTS!", end='\r')
@@ -282,7 +282,7 @@ class DIPERLUKAN:
             }
             response = r.get('https://partner.googleadservices.com/gampad/cookie.js', params=params).text
             if '_gfp_s_' in str(response):
-                self.json_cookies = json.loads(re.search('_gfp_s_\\((.*?)\\);', str(response)).group(1))
+                self.json_cookies = json.loads(re.search(r'_gfp_s_\((.*?)\);', str(response)).group(1))
                 return (f"_gads={self.json_cookies['_cookies_'][0]['_value_']}; __gpi={self.json_cookies['_cookies_'][1]['_value_']}")
             else:
                 return ('_gads=; __gpi=;')
@@ -292,10 +292,10 @@ class MAIN:
     def __init__(self):
         try:
             self.TAMPILKAN_LOGO()
-            printf(Panel(f"[italic white]Please fill in your tiktok video link, make sure the account is not private and the\nlink is correct. Take the video link via browser!", width=56, style="bold bright_white", title="[ Link Video ]", subtitle="╭─────", subtitle_align="left"))
+            printf(Panel(f"[bold white]Please fill in your tiktok video link, make sure the account is not private and the\nlink is correct. Take the video link via browser!", width=56, style="bold bright_white", title="[bold bright_white][ Link Video ]", subtitle="[bold bright_white]╭─────", subtitle_align="left"))
             video_url = Console().input("[bold bright_white]   ╰─> ")
             if 'tiktok.com' in str(video_url) or '/video/' in str(video_url):
-                printf(Panel(f"[italic white]You can use[italic green] CTRL + C[italic white] if stuck and use[italic red] CTRL + Z[italic white] if you want to stop. If views do not come\nin try running manually and run this program again!", width=56, style="bold bright_white", title="[ Catatan ]"))
+                printf(Panel(f"[bold white]You can use[bold green] CTRL + C[bold white] if stuck and use[bold red] CTRL + Z[bold white] if you want to stop. If views do not come\nin try running manually and run this program again!", width=56, style="bold bright_white", title="[bold bright_white][ Catatan ]"))
                 while True:
                     try:
                         if COOKIES['Cookie'] == None or len(COOKIES['Cookie']) == 0:
@@ -316,22 +316,22 @@ class MAIN:
                         printf(f"\r                                 ", end='\r')
                         time.sleep(2.5)
             else:
-                printf(Panel(f"[italic red]Please fill in the TikTok video link correctly, make sure you take the video link in the browser!", width=56, style="bold bright_white", title="[ Link Salah ]"))
+                printf(Panel(f"[bold red]Please fill in the TikTok video link correctly, make sure you take the video link in the browser!", width=56, style="bold bright_white", title="[bold bright_white][ Link Salah ]"))
                 sys.exit()
         except (Exception) as e:
-            printf(Panel(f"[italic red]{str(e).capitalize()}!", width=56, style="bold bright_white", title="[ Error ]"))
+            printf(Panel(f"[bold red]{str(e).capitalize()}!", width=56, style="bold bright_white", title="[bold bright_white][ Error ]"))
             sys.exit()
 
     def TAMPILKAN_LOGO(self):
         os.system('cls' if os.name == 'nt' else 'clear')
         printf(
-            Panel("""[bold red]● [bold yellow]● [bold green]●[bold white]
+            Panel(r"""[bold red]● [bold yellow]● [bold green]●[bold white]
 [bold red] ______     ______     ______   ______     __  __    
 [bold red]/\___  \   /\  ___\   /\  ___\ /\  __ \   /\ \_\ \   
 [bold red]\/_/  /__  \ \  __\   \ \  __\ \ \ \/\ \  \ \____ \  
 [bold white]  /\_____\  \ \_____\  \ \_\    \ \_____\  \/\_____\ 
 [bold white]  \/_____/   \/_____/   \/_/     \/_____/   \/_____/
-\t[underline green]Free Tiktok Views - Coded by Rozhak""", width=56, style="bold bright_white")
+        [underline green]Free Tiktok Views - Coded by Rozhak""", width=56, style="bold bright_white")
         )
         return (True)
 
@@ -349,7 +349,7 @@ if __name__ == '__main__':
             time.sleep(3.5)
         MAIN()
     except (Exception) as e:
-        printf(Panel(f"[italic red]{str(e).capitalize()}!", width=56, style="bold bright_white", title="[ Error ]"))
+        printf(Panel(f"[bold red]{str(e).capitalize()}!", width=56, style="bold bright_white", title="[bold bright_white][ Error ]"))
         sys.exit()
     except (KeyboardInterrupt):
         sys.exit()
