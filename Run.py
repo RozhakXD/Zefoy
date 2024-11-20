@@ -12,7 +12,7 @@ except (ModuleNotFoundError) as e:
 
 COOKIES, SUKSES, LOGOUT, GAGAL = {
     "Cookie": None
-    }, [], [], []
+}, [], [], []
 
 class DIPERLUKAN:
 
@@ -38,7 +38,7 @@ class DIPERLUKAN:
                 printf(Panel(f"[bold red]Zefoy server is currently affected by cloudflare, you can try again until cloudflare\nis gone, please visit[bold green] zefoy.com[bold red] to check it!", width=56, style="bold bright_white", title="[bold bright_white][ Cloudflare ]"))
                 sys.exit()
             else:
-                self.captcha_image = re.search(r'src="(.*?)" onerror="imgOnError\(\)"', str(response)).group(1).replace('amp;', '')
+                self.captcha_image = re.search(r'src="(.*?)" onerror="errimg\(\)"', str(response)).group(1).replace('amp;', '')
                 self.form = re.search(r'type="text" name="(.*?)"', str(response)).group(1)
                 r.headers.update(
                     {
