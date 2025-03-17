@@ -7,7 +7,7 @@ try:
     from rich.panel import Panel
     from rich.console import Console
     from requests.exceptions import RequestException
-except (ModuleNotFoundError) as e:
+except ModuleNotFoundError as e:
     __import__('sys').exit(f"Error: {str(e).capitalize()}!")
 
 COOKIES, SUKSES, LOGOUT, GAGAL = {
@@ -19,7 +19,7 @@ class DIPERLUKAN:
     def __init__(self) -> None:
         pass
 
-    def LOGIN(self):
+    def LOGIN(self) -> bool:
         with requests.Session() as session:
             session.headers.update(
                 {
@@ -28,7 +28,7 @@ class DIPERLUKAN:
                     'Sec-Fetch-Mode': 'navigate',
                     'Sec-Fetch-Site': 'none',
                     'Host': 'zefoy.com',
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
                     'Sec-Fetch-User': '?1',
                     'Sec-Fetch-Dest': 'document'
                 }
@@ -39,7 +39,7 @@ class DIPERLUKAN:
                 sys.exit()
             else:
                 self.captcha_image = re.search(r'src="(.*?)" onerror="errimg\(\)"', str(response)).group(1).replace('amp;', '')
-                self.form = re.search(r'type="text" name="(.*?)"', str(response)).group(1)
+                self.form = re.search(r'type="text" id="captchatoken" name="(.*?)"', str(response)).group(1)
                 session.headers.update(
                     {
                         'Cookie': "; ".join([str(x) + "=" + str(y) for x, y in session.cookies.get_dict().items()]),
@@ -73,28 +73,28 @@ class DIPERLUKAN:
                     )
                     printf(f"[bold bright_white]   ──>[bold green] LOGIN SUCCESSFUL!                ", end='\r')
                     time.sleep(2.5)
-                    return (COOKIES['Cookie'])
+                    return True
                 else:
                     printf(f"[bold bright_white]   ──>[bold red] LOGIN FAILED!                     ", end='\r')
                     time.sleep(2.5)
-                    return (False)
+                    return False
 
-    def BYPASS_CAPTCHA(self):
+    def BYPASS_CAPTCHA(self) -> str:
         self.file_gambar = ('Penyimpanan/Gambar.png')
         self.image = Image.open(self.file_gambar)
         self.image_string = pytesseract.image_to_string(self.image)
-        return (self.image_string.replace('\n', ''))
+        return self.image_string.replace('\n', '')
     
-    def MENDAPATKAN_FORMULIR(self, video_url):
+    def MENDAPATKAN_FORMULIR(self, video_url: str) -> bool:
         with requests.Session() as session:
             session.headers.update(
                 {
                     'Accept-Language': 'en-US,en;q=0.9',
                     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
                     'Host': 'zefoy.com',
-                    'Cookie': f'{COOKIES["Cookie"]}; window_size=1280x551; user_agent=Mozilla%2F5.0%20(Windows%20NT%2010.0%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F131.0.0.0%20Safari%2F537.36; language=en-US; languages=en-US; cf-locale=en-US;',
+                    'Cookie': f'{COOKIES["Cookie"]}; window_size=1280x551; user_agent=Mozilla%2F5.0%20(Windows%20NT%2010.0%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F134.0.0.0%20Safari%2F537.36; language=en-US; languages=en-US; cf-locale=en-US;',
                     'Sec-Fetch-Site': 'none',
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
                     'Sec-Fetch-Mode': 'navigate',
                     'Sec-Fetch-User': '?1',
                     'Sec-Fetch-Dest': 'document',
@@ -116,17 +116,17 @@ class DIPERLUKAN:
                         "Cookie": None
                     }
                 )
-                return (False)
+                return False
     
-    def MENGIRIMKAN_TAMPILAN(self, video_form, post_action, video_url):
+    def MENGIRIMKAN_TAMPILAN(self, video_form: str, post_action: str, video_url: str) -> bool:
         global SUKSES, GAGAL
         with requests.Session() as session:
             boundary = '----WebKitFormBoundary' \
                 + ''.join(random.sample(string.ascii_letters + string.digits, 16))
             session.headers.update(
                 {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-                    'Cookie': f'{COOKIES["Cookie"]}; {self.BYPASS_IKLAN_GOOGLE()}; window_size=1280x551; user_agent=Mozilla%2F5.0%20(Windows%20NT%2010.0%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F131.0.0.0%20Safari%2F537.36; language=en-US; languages=en-US; time_zone=Asia/Jakarta; cf-locale=en-US;',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+                    'Cookie': f'{COOKIES["Cookie"]}; {self.BYPASS_IKLAN_GOOGLE()}; window_size=1280x551; user_agent=Mozilla%2F5.0%20(Windows%20NT%2010.0%3B%20Win64%3B%20x64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F134.0.0.0%20Safari%2F537.36; language=en-US; languages=en-US; time_zone=Asia/Jakarta; cf-locale=en-US;',
                     'Sec-Fetch-Mode': 'cors',
                     'Sec-Fetch-Site': 'same-origin',
                     'Connection': 'keep-alive',
@@ -161,7 +161,7 @@ class DIPERLUKAN:
                 else:
                     printf(f"[bold bright_white]   ──>[bold red] UNABLE TO FIND REQUIRED FORM FIELDS!     ", end='\r')
                     time.sleep(3.5)
-                    return (False)
+                    return False
                 self.next_post_action = re.search(r'action="(.*?)"', str(self.base64_string)).group(1)
                 data = MultipartEncoder(
                     {
@@ -199,7 +199,10 @@ class DIPERLUKAN:
                             "Cookie": None
                         }
                     )
-                    return (False)
+                    return False
+            elif 'This service is currently not working.' in str(self.base64_string):
+                printf(Panel(f"[bold red]Sorry, the views service is currently unavailable be\ncause the Zefoy server\nis still under maintenance. Please try again later!", width=56, style="bold bright_white", title="[bold bright_white][ Maintenance ]"))
+                sys.exit()
             elif 'Checking Timer...' in str(self.base64_string):
                 printf(f"[bold bright_white]   ──>[bold green] WAIT FOR 4 MINUTES!          ", end='\r')
                 time.sleep(2.5)
@@ -213,7 +216,7 @@ class DIPERLUKAN:
                 printf(f"[bold bright_white]   ──>[bold red] PLEASE TRY AGAIN IN A FEW MOMENTS!     ", end='\r')
                 time.sleep(2.5)
                 self.DELAY(0, 300)
-                return (False)
+                return False
             elif 'Please try again later. Server too busy.' in str(self.base64_string):
                 printf(Panel(f"[bold red]Zefoy server is busy, you can try again in a few days, please check regularly on zefoy.com!", width=56, style="bold bright_white", title="[bold bright_white][ Server Sibuk ]"))
                 sys.exit()
@@ -221,12 +224,12 @@ class DIPERLUKAN:
                 printf(f"[bold bright_white]   ──>[bold red] AN ERROR OCCURRED, PLEASE TRY AGAIN IN A FEW MOMENTS!", end='\r')
                 time.sleep(2.5)
                 self.DELAY(0, 120)
-                return (False)
+                return False
             elif 'Too many requests. Please slow down.' in str(self.base64_string):
                 printf(f"[bold bright_white]   ──>[bold red] SUBJECT TO SPAM OR LIMIT!           ", end='\r')
                 time.sleep(2.5)
                 self.DELAY(0, 500)
-                return (False)
+                return False
             elif 'Please wait ' in str(self.base64_string) and ' seconds before trying again.' in str(self.base64_string):
                 self.wait_time = re.search(r'Please wait (.*?) seconds before trying again.', str(self.base64_string)).group(1)
                 printf(f"[bold bright_white]   ──>[bold red] PLEASE WAIT {self.wait_time} SECONDS BEFORE TRYING AGAIN!     ", end='\r')
@@ -245,9 +248,9 @@ class DIPERLUKAN:
                         "Cookie": None
                     }
                 )
-                return (False)
+                return False
 
-    def ANTI_LOGOUT(self):
+    def ANTI_LOGOUT(self) -> bool:
         with requests.Session() as session:
             session.headers.update(
                 {
@@ -256,28 +259,28 @@ class DIPERLUKAN:
                     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
                     'Host': 'zefoy.com',
                     'Sec-Fetch-Site': 'none',
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
                     'Sec-Fetch-Mode': 'navigate',
                     'Sec-Fetch-User': '?1',
                     'Sec-Fetch-Dest': 'document',
                 }
             )
             response = session.get('https://zefoy.com/').text
-            return (True)
+            return True
 
-    def DECRYPTION_BASE64(self, base64_code):
+    def DECRYPTION_BASE64(self, base64_code: str) -> str:
         return base64.b64decode(urllib.parse.unquote(base64_code[::-1])).decode()
     
-    def DELAY(self, menit, detik):
+    def DELAY(self, menit: int, detik: int) -> None:
         self.total = (menit * 60 + detik)
         while (self.total):
             menit, detik = divmod(self.total, 60)
             printf(f"[bold bright_white]   ──>[bold white] TUNGGU[bold green] {menit:02d}:{detik:02d}[bold white] SUKSES:-[bold green]{len(SUKSES)}[bold white] GAGAL:-[bold red]{len(GAGAL)}              ", end='\r')
             time.sleep(1)
             self.total -= 1
-        return ("0_0")
+        return None
 
-    def BYPASS_IKLAN_GOOGLE(self):
+    def BYPASS_IKLAN_GOOGLE(self) -> str:
         with requests.Session() as session:
             session.headers.update(
                 {
@@ -286,7 +289,7 @@ class DIPERLUKAN:
                     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
                     'Host': 'zefoy.com',
                     'Sec-Fetch-Site': 'none',
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
                     'Sec-Fetch-Mode': 'navigate',
                     'Sec-Fetch-User': '?1',
                     'Sec-Fetch-Dest': 'document',
@@ -300,13 +303,13 @@ class DIPERLUKAN:
             response = session.get('https://partner.googleadservices.com/gampad/cookie.js', params=params).text
             if '_gfp_s_' in str(response):
                 self.json_cookies = json.loads(re.search(r'_gfp_s_\((.*?)\);', str(response)).group(1))
-                return (f"_gads={self.json_cookies['_cookies_'][0]['_value_']}; __gpi={self.json_cookies['_cookies_'][1]['_value_']}")
+                return f"_gads={self.json_cookies['_cookies_'][0]['_value_']}; __gpi={self.json_cookies['_cookies_'][1]['_value_']}"
             else:
-                return ('_gads=; __gpi=;')
+                return '_gads=; __gpi=;'
 
 class MAIN:
 
-    def __init__(self):
+    def __init__(self) -> None:
         try:
             self.TAMPILKAN_LOGO()
             printf(Panel(f"[bold white]Please fill in your tiktok video link, make sure the account is not private and the\nlink is correct. Take the video link via browser!", width=56, style="bold bright_white", title="[bold bright_white][ Link Video ]", subtitle="[bold bright_white]╭─────", subtitle_align="left"))
@@ -325,21 +328,21 @@ class MAIN:
                         printf(f"[bold bright_white]   ──>[bold red] ERROR OCCURRED IN INDEX FORM!            ", end='\r')
                         time.sleep(7.5)
                         continue
-                    except (RequestException):
+                    except RequestException:
                         printf(f"[bold bright_white]   ──>[bold red] YOUR CONNECTION IS HAVING A PROBLEM!     ", end='\r')
                         time.sleep(7.5)
                         continue
-                    except (KeyboardInterrupt):
+                    except KeyboardInterrupt:
                         printf(f"\r                                 ", end='\r')
                         time.sleep(2.5)
             else:
                 printf(Panel(f"[bold red]Please fill in the TikTok video link correctly, make sure you take the video link in the browser!", width=56, style="bold bright_white", title="[bold bright_white][ Link Salah ]"))
                 sys.exit()
-        except (Exception) as e:
+        except Exception as e:
             printf(Panel(f"[bold red]{str(e).capitalize()}!", width=56, style="bold bright_white", title="[bold bright_white][ Error ]"))
             sys.exit()
 
-    def TAMPILKAN_LOGO(self):
+    def TAMPILKAN_LOGO(self) -> bool:
         os.system('cls' if os.name == 'nt' else 'clear')
         printf(
             Panel(r"""[bold red]● [bold yellow]● [bold green]●[bold white]
@@ -350,7 +353,7 @@ class MAIN:
 [bold white]  \/_____/   \/_____/   \/_/     \/_____/   \/_____/
         [underline green]Free Tiktok Views - Coded by Rozhak""", width=56, style="bold bright_white")
         )
-        return (True)
+        return True
 
 if __name__ == '__main__':
     try:
@@ -363,8 +366,8 @@ if __name__ == '__main__':
                 json.dump({"Status": True}, w, indent=4)
             time.sleep(3.5)
         MAIN()
-    except (Exception) as e:
+    except Exception as e:
         printf(Panel(f"[bold red]{str(e).capitalize()}!", width=56, style="bold bright_white", title="[bold bright_white][ Error ]"))
         sys.exit()
-    except (KeyboardInterrupt):
+    except KeyboardInterrupt:
         sys.exit()
